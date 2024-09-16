@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Attestation de travail - Coach de sport</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+      h1 {
+        color: #4CAF50;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+      }
+      p {
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      .signature {
+        text-align: right;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    {# <img src="https://scontent.ftun16-1.fna.fbcdn.net/v/t1.15752-9/331960234_888756415727415_4847081438814132627_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=ae9488&_nc_ohc=DqgTTxvWuvEAX-9asJ7&_nc_ht=scontent.ftun16-1.fna&oh=03_AdTLrlf5mkQsl8acpfRZrBy12I61uHogZm2xLVgk3eKKvw&oe=641C4FF7" alt="" class="img-thumbnail" style="width:100px;"> #}
+    <center>
+      <h1>Attestation de travail</h1>
+    </center>
+
+      <p>Nous certifions que M/Mme {{user.nom|upper}}, exerçant en tant que coach de sport au sein de BODY ROCK, est employé(e) à temps plein .</p>
+      <p>Les fonctions de {{user.nom|upper}} consistent à élaborer des programmes d'entraînement personnalisés pour nos clients, à animer des séances de coaching individuelles et collectives, ainsi qu'à assurer la gestion des équipements sportifs.</p>
+      <p>Nous attestons également que {{user.nom|upper}} possède les qualifications nécessaires pour exercer ce métier et que sa rémunération est conforme aux conventions collectives en vigueur.</p>
+      <p>Fait à Tunis, le {{date|date("d/m/Y")}}</p>
+      <div class="signature">
+        <p>[Nom et signature du responsable de l'entreprise]</p>
+      </div>
+    </div>
+  </body>
+</html>

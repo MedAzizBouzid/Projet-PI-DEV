@@ -1,0 +1,133 @@
+{% extends 'back/base.html.twig' %}
+{% block title %}
+    <title>Table Admin</title>
+    
+{% endblock %}
+
+{% block body %}
+
+            <!-- Table End -->
+            <div   class="row my-4">
+            <div>
+                 <a href="{{ path('app_user_newA')}}"><button type="button" class="btn btn-light m-2"><i class="fas fa-user-plus fa-lg"></i></button></a>
+            </div>
+            
+              {% for user in users %}
+
+        <div class="col-xl-4 mb-4">
+            <div class="bg-secondary rounded h-100 p-4" style="width:350px">
+                {# <h6 class="mb-4">{{ user.nom }}</h6> #}
+                <div class="owl-carousel testimonial-carousel">
+                    <div class="testimonial-item text-center">
+                    <center>
+                    <img  src="{{asset('uploads/'~ user.image )}}" alt="" class="img-thumbnail" style=" width:100px;">
+                    </center>
+                        {# <img class="img-fluid rounded-circle mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;"> #}
+                        {% if user.etat ==0 %}
+                        <h5 class="mb-1">{{ user.nom }} {{ user.prenom }} <i class="bi bi-patch-check" style="color:green;"></i></h5>
+                        {% else %}
+                        <h5 class="mb-1">{{ user.nom }} {{ user.prenom }} <i class="bi bi-patch-check" style="color:red;"></i></h5>
+                            
+                        {% endif %}
+                        <p><i class="fas fa-user"></i> : {{ user.userName }}</p>
+                        <p><i class="fas fa-envelope"></i> : {{ user.email }}</p>
+                        <p><i class="fas fa-phone"></i> : {{ user.numTel }}</p>
+                   {% if app.user.etat == 0 %}
+                                                        <center>
+                                                            <table >
+                                                        <thead>
+                                                            <tr>
+                                                            <th> </th>
+                                                            <th> </th>
+                                                            <th> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                            <tr >
+                                                            
+                                                            <td>
+                                                            <a href="{{ path('app_user_editA', {'id': user.id}) }}"><button class="btn btn-success m-2"><i class="bi bi-pencil-square"></i></button></a>
+                                                            </td>
+                                                            <td> <form method="post" action="{{ path('app_user_deleteA', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                                                        <button class="btn btn-danger m-2"><i class="fa fa-trash"></i></button>
+                                                                    </form>
+                                                            </td>
+                                                            <td><form method="post" action="{{ path('app_user_bannA', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to ban this user?');">
+                                                                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                                                                                            <button class="btn btn-danger m-2" >Ban</button>
+                                                                                                        </form></td>
+                                                            <td>
+                                                            <form method="post" action="{{ path('app_user_anbannA', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to unban this user?');">
+                                                                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                                                                                            <button class="btn btn-success m-2" >UnBan</button>
+                                                                                                        </form>
+                                                            </td>
+                                                            </tr>
+
+                                                        </tbody> 
+                                                        </table>
+                                                            </center>
+
+ 
+                                         
+                                                {% else %}
+                                                    You don't have access to actions
+                                                    
+                                                {% endif %}
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        {% endfor %} 
+    </div>
+    <div class="navigation" >
+        {# {{ knp_pagination_render(users) }} #}
+        {{ knp_pagination_render(users, '', {'pagination': users, 'classes': {'pagination': 'pagination', 'disabled': 'disabled', 'active': 'active', 'prev': 'prev', 'next': 'next'}})|raw }}
+    </div>
+    <style>
+    /* styles.css */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    list-style: none;
+    margin: 0 5px;
+}
+
+.pagination li.disabled span,
+.pagination li.active span {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination li a,
+.pagination li span {
+    display: block;
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.pagination li a:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+    </style>
+
+            {% endblock %}
+
+            

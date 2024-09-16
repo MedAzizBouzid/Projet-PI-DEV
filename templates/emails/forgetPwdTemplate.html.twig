@@ -1,0 +1,13 @@
+<h1>Hi! {{user.nom}}</h1>
+
+<p>
+    We have received a request to reset your password.: <br><br>
+    <a  href="{{ absolute_url( path('app_resretPwd'))}}" >Change password</a>.
+
+    Verification code: {{code}}
+    
+</p>
+
+<p>
+    Cheers!
+</p>

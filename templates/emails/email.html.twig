@@ -1,0 +1,12 @@
+
+<h1>Hi! {{user.nom}} Please confirm your email!</h1>
+
+<p>
+    Please confirm your email address by clicking the following link: <br><br>
+    <a  href="{{ absolute_url( path('app_verify_email',{token: token}))}}" >Confirm my Email</a>.
+    This link will expire in 3 hours.
+</p>
+
+<p>
+    Cheers!
+</p>

@@ -7,7 +7,11 @@
     <meta name="keywords" content="Gym, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sign-check-icon.png/800px-Sign-check-icon.png" rel="icon">
+    {% block title %}
+
     <title>Gym | Template</title>
+    {% endblock %}
     {% block stylesheets %}
 
     <!-- Google Font -->
@@ -26,6 +30,7 @@
 {% endblock %}
 </head>
 <body>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -42,7 +47,7 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="{{ path('app_home') }}">Home</a></li>
                 <li><a href="./about-us.html">About Us</a></li>
                 <li><a href="./classes.html">Classes</a></li>
                 <li><a href="./services.html">Services</a></li>
@@ -62,17 +67,38 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <div class="canvas-social">
+        {# <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div> #}
+        {# <div class="canvas-social">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-youtube-play"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
+        </div> #}
     </div>
     <!-- Offcanvas Menu Section End -->
 
     <!-- Header Section Begin -->
     <header class="header-section">
+    {% if app.user and app.user.isVerified == false %}
+   
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Your account is not verified !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+{% endif %}
+{% include "partials/flash.html.twig" %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
@@ -82,10 +108,13 @@
                         </a>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br><br><br>
                 <div class="col-lg-6">
                     <nav class="nav-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="{{ path('app_home') }}">Home</a></li>
                             <li><a href="./about-us.html">About Us</a></li>
                             <li><a href="./class-details.html">Classes</a></li>
                             <li><a href="./services.html">Services</a></li>
@@ -101,6 +130,7 @@
                                     <li><a href="./404.html">404</a></li>
                                 </ul>
                             </li>
+                            
                             <li><a href="./contact.html">Contact</a></li>
                         </ul>
                     </nav>
@@ -109,12 +139,60 @@
                     <div class="top-option">
                         <div class="to-search search-switch">
                             <i class="fa fa-search"></i>
+                            {# <a href="#"><i >My Profile</i></a>
+                            <a href="#"><i >Settings</i></a>
+                            <a href="#"><i >Log Out</i></a> #}
                         </div>
-                        <div class="to-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                                <div class="to-social">
+                                    {# <nav class="nav-menu"> #}
+                                
+                                        
+                                        {# <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    {% if app.user %}
+                                         {% if is_granted('ROLE_ADMIN') %}
+                                            <li class="nav-item"><a class="nav-link" href="{{path('app_back_index')}}">Administration</a></li>
+                                        
+                                        {% endif %} 
+                                            
+                                            <li class="nav-item"><a class="nav-link" href="{{ path('app_profile', {'id': app.user.id}) }}">My Profile</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{{path('app_logout')}}">Log Out</a></li>
+                                        
+                                  
+                                  {% else %}
+                                            <li class="nav-item"><a class="nav-link" href="{{path('app_login')}}">Sign in</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{{path('app_register')}}">Sign up</a></li>
+
+                                    {% endif %}
+                                            
+                                </ul> #}
+                                <div >
+                                    <nav class="nav-menu">
+                                        <ul>
+                                           
+                                            <li><a href="#">{{app.user.userName}}</a>
+                                                <ul class="dropdown" style="width:140px">
+                                                    {% if app.user %}
+                                                            {% if is_granted('ROLE_ADMIN') %}
+                                                                <li class="nav-item"><a class="nav-link" href="{{path('app_back_index')}}">Administration</a></li>
+                                                            
+                                                            {% endif %} 
+                                                                
+                                                                <li class="nav-item"><a class="nav-link" href="{{ path('app_profile', {'id': app.user.id}) }}">My Profile</a></li>
+                                                                <li class="nav-item"><a class="nav-link" href="{{path('app_logout')}}">Log Out</a></li>
+                                                            
+                                                    
+                                                    {% else %}
+                                                                <li class="nav-item"><a class="nav-link" href="{{path('app_login')}}">Sign in</a></li>
+                                                                <li class="nav-item"><a class="nav-link" href="{{path('app_register')}}">Sign up</a></li>
+
+                                                    {% endif %}
+                                                </ul>
+                                            </li>
+                                            
+                                        </ul>
+                                    </nav>
+                                </div>
+                            {# </nav> #}
                         </div>
                     </div>
                 </div>

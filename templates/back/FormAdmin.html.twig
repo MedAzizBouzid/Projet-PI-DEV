@@ -1,0 +1,76 @@
+{% extends 'back/base.html.twig' %}
+
+
+{% block body %}
+            <!-- Form Start -->
+             <div class="container-fluid" >
+            <div >
+                <div >
+                <center>
+                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3" style="width:500px;">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <a href="index.html" class="">
+                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Admin</h3>
+                            </a>
+                        </div>
+                        
+                       {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.nom)}}
+                            {{form_errors(form.nom)}}
+                            {{form_label(form.nom,"Name")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.prenom)}}
+                            {{form_errors(form.prenom)}}
+                            {{form_label(form.prenom,"lastname")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.userName)}}
+                            {{form_errors(form.userName)}}
+                            {{form_label(form.userName,"userName")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.email)}}
+                            {{form_errors(form.email)}}
+                            {{form_label(form.email,"email")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.numTel)}}
+                            {{form_errors(form.numTel)}}
+                            {{form_label(form.numTel,"Tel")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.plainPassword)}}
+                            {{form_errors(form.plainPassword)}}
+                            {{form_label(form.plainPassword,"password")}}
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{form_widget(form.image)}}
+                            {{form_errors(form.image)}}
+                            {{form_label(form.image,"image")}}
+
+                        </div>
+                        {# <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div> #}
+                        {{ form_row(form.agreeTerms) }}
+                        
+                        
+                     <button type="submit" class="btn btn-primary py-3 w-100 mb-4">{{ button_label|default('Save') }}</button>
+                        <a href="{{ path('app_user_admin') }}">back to list</a> 
+                        {{form_end(form)}}
+
+                </div>
+                </center>
+            </div>
+        </div>
+            <!-- Form End -->
+{% endblock %}

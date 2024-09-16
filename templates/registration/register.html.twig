@@ -1,0 +1,148 @@
+
+
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Sign Up</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sign-check-icon.png/800px-Sign-check-icon.png" rel="icon">
+
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="{{ asset('assets/front/css/styleLogin.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/front/css/captcha.css')}}" rel="stylesheet">
+
+
+<body >
+<div  class="container">
+	<div class="d-flex justify-content-center h-100">
+
+		<div style="height: 750px;width: 550px;position: absolute;" class="card">
+			<div class="card-header">
+				<h3>Create account</h3>
+				{# <div class="d-flex justify-content-end social_icon">
+					<span><i class="fab fa-facebook-square"></i></span>
+					<span><i class="fab fa-google-plus-square"></i></span>
+					<span><i class="fab fa-twitter-square"></i></span>
+				</div> #}
+			</div>
+			<div class="card-body">
+                        {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
+
+                            <div style="color:red;">{{form_errors(registrationForm.nom)}}
+				
+					<div class="input-group form-group">
+                            
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						{{form_widget(registrationForm.nom)}}
+						
+					</div>
+                            {{form_errors(registrationForm.prenom)}}
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						 {{form_widget(registrationForm.prenom)}}
+						
+					</div>
+                            {{form_errors(registrationForm.userName)}}
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						 {{form_widget(registrationForm.userName)}}
+						
+					</div>
+                            {{form_errors(registrationForm.email)}}
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+						</div>
+						{{form_widget(registrationForm.email)}}
+						
+					</div>
+                            {{form_errors(registrationForm.numTel)}}
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-phone"></i></span>
+						</div>
+						 {{form_widget(registrationForm.numTel)}}
+						
+					</div>
+                            {{form_errors(registrationForm.plainPassword)}}
+
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						{{form_widget(registrationForm.plainPassword)}}
+					</div>
+                            {{form_errors(registrationForm.image)}}
+
+					<div class="input-group form-group">
+						{{form_widget(registrationForm.image)}}
+					</div>
+                    <div class="captcha-area">
+                       
+                                 <div class="captcha-img">
+                                      <img src="{{asset('assets/captcha-bg.png')}}" alt="Captch Background" style="width:400px;height:70px;">
+                                       <span class="captcha" id="captcha" style="color:black;">{{random}}</span>
+                                        <input type="hidden" class="form-control" id="floatingInput" name="captcha" value="{{random}}">
+                                                        
+                                  </div>
+                       
+
+                          </div>
+                                   <input type="text" id="2" placeholder="Enter captcha" class="form-control" name="captchaVerif" maxlength="6" spellcheck="false" required>
+                         <div class="status-text">
+                                <label class="form-check-label" style="color:red;" >{{err}}</label>
+    
+                          </div>
+					<div class="row align-items-center remember">
+						 {{ form_row(registrationForm.agreeTerms) }}
+
+					</div>
+
+					<div class="form-group">
+                    <button type="submit" class="btn float-right login_btn">{{ button_label|default('Sign Up') }}</button>
+                        {# <p class="text-center mb-0">Already have an Account? <a href="{{ path('app_login') }}">Sign in</a></p> #}
+						{# <input type="submit" value="Create" name="submit" class="btn float-right login_btn"> #}
+						<a  href="{{ path('app_home') }}"><i class="fa fa-home"></i></a>
+						{# <p id="error"></p> #}
+						<!-- <button type="submit" class="btn btn-primary my-5" name="add">Save</button> -->
+
+					</div>
+				{{form_end(registrationForm)}}
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Do you have an account?<a style="color:#f30400;"href="{{ path('app_login') }}">Login</a>
+				</div>
+				
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+</html>
